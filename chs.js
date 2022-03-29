@@ -899,6 +899,7 @@ var cnRegReplace = new Map([
     [/^Watch(.+)Tower(.+)Lv(.+)$/, '瞭望塔等级'],
     [/^Next at (.+) points$/, '下一个在 $1 点数'],
     [/^Login to the game (.+) day$/, '登录游戏 $1 天'],
+    [/^Welcome Back (.+)\nYou are offline for (.+) Min (.+) Sec\nYou are killing (.+) Enemies\nAnd you got (.+) Coins$/, '欢迎回来 $1\n你离线 $2 分钟 $3 秒\n你杀死了 $4 敌人\n你得到了 $5 金币'],
     [/^Welcome Back (.+)\nYou are offline for (.+) Sec\nYou are killing (.+) Enemy\nAnd you got (.+)$/, '欢迎回来 $1\n你离线 $2 秒\n你杀死了 $3 敌人\n你得到了 $4'],
     [/^Online time play (.+) mins$/, '在线游戏 $1 分钟'],
     [/^Run a prestige (.+) times$/, '运行声望 $1 次'],
