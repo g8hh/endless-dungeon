@@ -18,19 +18,19 @@
     <meta name="description" content="Conquer Kuro Idle Dungeon, the best browser idle game. You control everything.">
     <meta name="author" content="Kuropone">
     <meta property="og:title" content="Kuro Idle Dungeon">
-    <meta property="og:url" content="" />
+    <meta property="og:url" content="https://endlessdungeon.github.io/" />
     <meta property="og:type" content="website" />
     <meta property="og:description"
         content="Conquer Kuro Idle Dungeon, the best browser idle game. You control everything.">
     <meta property="og:image" content="assets/images/dungeon.png" />
     <meta property="og:site_name" content="Kuro Idle Dungeon">
-    <title>Kuro Idle Dungeon</title>
+    <title>无尽的地牢 - Kuro Idle Dungeon</title>
     <link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico" />
     <link rel="stylesheet" href="assets/css/sb-admin-2.min.css">
 </head>
 
 <body>
-    <script src="chs.js?202106041511"></script>
+    <script src="chs.js"></script>
     <script src="//g8hh.com/zh/core.js"></script>
     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
         aria-labelledby="myModalLabel" aria-hidden="true">
@@ -47,9 +47,30 @@
                             id="gender-female" src="assets/images/female.svg"
                             class="image-equipment cursor-button rounded-card"></img> <input type="hidden"
                             id="user-gender" class="form-control validate" required readonly> </div>
-                    <div class="md-form mb-2"> <label id="label-title" for="user-name">King / Queen</label> <input
-                            type="text" id="user-name" class="form-control validate" maxlength="20"
-                            placeholder="Choose your gender first" autocomplete="off" required pattern="[a-zA-Z0-9]+">
+                    <div class="md-form"> <label id="label-title" for="user-name">King / Queen</label> <input
+                            type="text" id="user-name" class="form-control validate alpha-numeric-space-format"
+                            maxlength="20" placeholder="Choose your gender first" autocomplete="off" required
+                            pattern="[a-zA-Z0-9]+"> </div>
+                    <div class="md-form v-center-flex"> <input type="checkbox" class="cursor-button"
+                            id="cloud-save-switch" name="cloud-save-switch">&nbsp; <label class="cursor-button"
+                            for="cloud-save-switch">Connect With Cloud Save</label>&nbsp;<img id="detail-cloud-info"
+                            src="assets/images/info-color.svg" class="image-size-static cursor-button"></img> </div>
+                    <div id="cloud-save-login-div" class="md-form rounded-card mx-0 mt-0 d-none">
+                        <form class="w-100 submit-form">
+                            <div class="md-form"> <label id="label-email" for="user-email">Email</label> <input
+                                    type="text" id="user-email" class="form-control validate email-format"
+                                    maxlength="100" placeholder="Email for cloud save" autocomplete="off" required
+                                    pattern="[a-zA-Z0-9]+"> </div>
+                            <div class="md-form"> <label id="label-password" for="user-password">Password</label> <input
+                                    type="password" id="user-password" class="form-control validate" maxlength="20"
+                                    placeholder="Password for cloud save" autocomplete="off" required
+                                    pattern="[a-zA-Z0-9]+"> </div>
+                            <div class="md-form"> <label id="label-confirm-password"
+                                    for="user-confirm-password">Confirm</label> <input type="password"
+                                    id="user-confirm-password" class="form-control validate" maxlength="20"
+                                    placeholder="Confirm Password for cloud save" autocomplete="off" required
+                                    pattern="[a-zA-Z0-9]+"> </div>
+                        </form>
                     </div>
                     <div id="register-error" class="md-form mb-2 unlock-info d-none"></div>
                 </div>
@@ -86,6 +107,42 @@
                     stage. Your feedback and suggestion are very helpful to make this game better. </div>
                 <div class="modal-footer d-flex justify-content-center"> <button id="new-player-button"
                         class="dpc-button">Play</button> </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalJumpStage" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 font-weight-bold">Welcome to Kuro Idle Dungeon</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="md-form">
+                        <div id="floor-header"
+                            class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 px-0 font-weight-bolder">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">Stage</div>
+                            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">Coin Drop</div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">Enemy HP</div>
+                        </div>
+                        <div id="all-floor-div" class="modal-scrollable row"></div>
+                        <div id="modal-header">What stage do you want to repeat ?</div>
+                        <div id="modal-header2"> <input type="text" id="jump-stage"
+                                class="form-control validate star-div" maxlength="4" autocomplete="off" required
+                                pattern="[0-9]+"> Your Max Stage : &nbsp;<span id="current-max-stage"></span><br />
+                            <label class="unlock-info">If you jump stage, your auto progress will automatically
+                                off</label> </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
+                                id="jump-stage-ok-button" class="dpc-button btn-primary">Yes, Jump Now</button> </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
+                                id="jump-stage-no-button" class="dpc-button btn-secondary">No, Don't Jump Stage</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -166,11 +223,11 @@
                     <h3 class="modal-title w-100 font-weight-bold">Welcome to Kuro Idle Dungeon</h3>
                 </div>
                 <div class="modal-body mx-3 modal-scrollable"> Thank you for playing Kuro Idle Dungeon<br /><br /> Here
-                    are new features at v<span id="gameVersion"></span> :<br /> 1. Add highest stage info<br /> 2. Add
-                    claim all button for achievement<br /> 3. Add a lot in game information<br /> 4. Stop enabling auto
-                    progress when kill boss<br /> 5. Update background & font color<br /> 6. Update better story
-                    flow<br /> 7. Reoder sidebar menu 8. Add in game time 9. A lot bugs fixing, adjustment &
-                    improvement<br /><br /> Your feedback and suggestion are very helpful to make this game better.
+                    are new features at v<span id="gameVersion"></span> :<br /> 1. Load last save data when connect
+                    cloud<br /> 2. Use server time<br /> 3. Add artifact fovourite<br /> 4. Add dps / gold feature<br />
+                    5. Update sidebar menu<br /> 6. Update skill order<br /> 7. Update several UI &amp; in game
+                    QOL<br /> 8. Update contrast ratio in several UI<br /> 9. Fixed several issue<br /> 10. Add more in
+                    game improvement<br /><br /> Your feedback and suggestion are very helpful to make this game better.
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 row">
@@ -183,6 +240,70 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalDifferentData" tabindex="-1" role="dialog" data-backdrop="static"
+        data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 font-weight-bold">Welcome to Kuro Idle Dungeon</h3>
+                </div>
+                <div class="modal-body text-center px-0">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 middle-align px-3"> We find another data
+                        in cloud<br /> Which data do you want to use ? <br /> Please note that the selected data will
+                        replace all other data. </div>
+                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 px-3">
+                        <div id="local-data-div"
+                            class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align rounded-card no-margin cursor-button">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">Local Data</div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"><img
+                                    src="assets/images/local.svg" class="w-40"></img></div>
+                            <div id="local-data-detail" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"></div>
+                        </div>
+                        <div id="cloud-data-div"
+                            class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align rounded-card no-margin cursor-button">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">Cloud Data</div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"><img
+                                    src="assets/images/cloud.svg" class="w-40"></img></div>
+                            <div id="cloud-data-detail" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
+                                id="differential-data-ok-button" class="dpc-button btn-primary">Choose <label
+                                    id="choosen-data-label"></label></button> </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
+                                id="differential-data-no-button" class="dpc-button btn-secondary">Cancel</button> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalConfirmDifferentData" tabindex="-1" role="dialog" data-backdrop="static"
+        data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 font-weight-bold">Welcome to Kuro Idle Dungeon</h3>
+                </div>
+                <div class="modal-body text-center px-0">
+                    <div id="confirm-differential-data-body"
+                        class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 middle-align px-3"></div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
+                                id="confirm-differential-data-ok-button" class="dpc-button btn-primary">Yes, Load
+                                It</button> </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
+                                id="confirm-differential-data-no-button" class="dpc-button btn-secondary">No, Select
+                                Again</button> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="modalOfflineForm" tabindex="-1" role="dialog" data-backdrop="static"
         data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -190,9 +311,12 @@
                 <div class="modal-header text-center">
                     <h3 class="modal-title w-100 font-weight-bold">Welcome to Kuro Idle Dungeon</h3>
                 </div>
-                <div class="row modal-body mx-3 middle-content v-center-flex"> <img id="image-offline-form"
-                        src="assets/images/idle.svg" class="image-offline"></img> <span class="white-space"
-                        id="offline-text"></span> </div>
+                <div class="row modal-body middle-content v-center-flex">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 middle-align"> <img id="image-offline-form"
+                            src="assets/images/idle.svg" class="image-offline"></img> </div>
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8"> <span class="white-space"
+                            id="offline-text"></span> </div>
+                </div>
                 <div class="modal-footer d-flex justify-content-center"> <button id="continue-button"
                         class="dpc-button">Continue</button> </div>
             </div>
@@ -305,7 +429,7 @@
                 <div class="modal-header text-center">
                     <h3 class="modal-title w-100 font-weight-bold">Welcome to Kuro Idle Dungeon</h3>
                 </div>
-                <div class="modal-body mx-3 text-center"> All your data will be reset. Are you sure ? </div>
+                <div id="clear-data-body" class="modal-body mx-3 text-center"></div>
                 <div class="modal-footer d-flex justify-content-center">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
@@ -368,8 +492,8 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex middle-content"><img
                             src="assets/images/orbs.svg" class="image-size"></img>&nbsp;Orbs&nbsp;:&nbsp;<span
                             id="modal-orbs"></span></div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">Which artifact do you want to unlock ?
-                        (<span id="unlock-artifact-confirm"></span>)</div>
+                    <div id="header-unlock-artifact-text" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">Which
+                        artifact do you want to unlock ? (<span id="unlock-artifact-confirm"></span>)</div>
                     <div id="reroll-artifact-text" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">Or, re-roll
                         another artifact. (<span id="reroll-artifact-fee"></span>)</div>
                 </div>
@@ -380,7 +504,8 @@
                                 id="random-artifact-ok-button" class="dpc-button btn-primary">Re-roll Another
                                 Artifact</button> </div>
                         <div class="col-xl-6 col-lg-6 col-md-4 col-sm-4 col-4 middle-align"> <button
-                                id="random-artifact-no-button" class="dpc-button btn-secondary">Later</button> </div>
+                                id="random-artifact-no-button" class="dpc-button btn-secondary">I'll Back Later</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -513,13 +638,8 @@
                 </div>
                 <div class="modal-body mx-3 text-center"> <span id="notif-new-feature"></span> </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
-                                id="notif-features-ok-button" class="dpc-button btn-primary" value="">Yes,
-                                Please</button> </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
-                                id="notif-features-no-button" class="dpc-button btn-secondary">I'll Do Later</button>
-                        </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 row"> <button
+                            id="notif-features-ok-button" class="dpc-button btn-primary" value="">Yes, Please</button>
                     </div>
                 </div>
             </div>
@@ -560,7 +680,7 @@
                 <div class="modal-footer d-flex justify-content-center">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
-                                id="cancel-adventure-ok-button" class="dpc-button btn-primary" value="">Yes, Cancel
+                                id="cancel-adventure-ok-button" class="dpc-button btn-danger" value="">Yes, Cancel
                                 It</button> </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 middle-align"> <button
                                 id="cancel-adventure-no-button" class="dpc-button btn-secondary">No, Don't
@@ -659,8 +779,7 @@
                 <div class="modal-header text-center">
                     <h3 class="modal-title w-100 font-weight-bold">Welcome to Kuro Idle Dungeon</h3>
                 </div>
-                <div class="modal-body mx-3 text-center"> Check that your system clock is set to the current date and
-                    time before you try again. </div>
+                <div class="modal-body mx-3 text-center"> Invalid timestamp. Please fix your date &amp; time </div>
             </div>
         </div>
     </div>
@@ -1007,7 +1126,7 @@
                             maxlength="2" autocomplete="off" required pattern="[0-9]+" readonly> <button
                             id="buy-tower-plus" class="up-count btn-info" title="Up">+</button> <button
                             id="buy-tower-all-plus" class="up-count btn-info" title="Up All">>></button>&nbsp; <img
-                            src="assets/images/token.svg" class="image-size">&nbsp;<span
+                            src="assets/images/token.svg" class="image-size"></img>&nbsp;<span
                             id="token-buy-tower-key"></span> </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex middle-content"> Daily
                         Limit (<span id="current-daily-limit-buy-tower-key">0</span>/<span
@@ -1081,6 +1200,19 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalLeaderboardReward" tabindex="-1" role="dialog" data-backdrop="static"
+        data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 font-weight-bold">Welcome to Kuro Idle Dungeon</h3>
+                </div>
+                <div id="leaderboard-reward-div" class="modal-body mx-3"></div>
+                <div class="modal-footer d-flex justify-content-center"> <button id="leaderboard-reward-ok-button"
+                        class="dpc-button" value="">Ok</button> </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="modalInformation" tabindex="-1" role="dialog" data-backdrop="static"
         data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1091,6 +1223,18 @@
                 <div id="information-div" class="modal-body mx-3"></div>
                 <div class="modal-footer d-flex justify-content-center"> <button id="information-ok-button"
                         class="dpc-button" value="">Ok</button> </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalLoading" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 font-weight-bold">Welcome to Kuro Idle Dungeon</h3>
+                </div>
+                <div class="modal-body mx-3 text-center"> <img src="assets/images/run.gif" class="w-25"></img><br />
+                    <span id="loadingDesc">Please wait, connecting to cloud save....</span> </div>
             </div>
         </div>
     </div>
@@ -1108,6 +1252,20 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalFailed" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 font-weight-bold">Welcome to Kuro Idle Dungeon</h3>
+                </div>
+                <div id="failed-div" class="modal-body mx-3 text-center modal-scrollable"> <span class="white-space"
+                        id="failed-text"></span> </div>
+                <div id="failed-ok-div" class="modal-footer d-flex justify-content-center"> <button
+                        id="failed-ok-button" class="dpc-button" value="">Ok</button> </div>
+            </div>
+        </div>
+    </div>
     <div id="wrapper">
         <ul id="accordionSidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled d-none">
             <div id="home" class="sidebar-brand d-flex align-items-center justify-content-center cursor-button">
@@ -1120,74 +1278,91 @@
                     <div id="gameplay-status-div" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 show-menu"></div>
                 </div>
                 <hr class="sidebar-divider">
-                <li id="dungeon" class="nav-item active"> <a class="nav-link"> <img src="assets/images/world.svg"
-                            width="12"></img> <span>World</span></a> </li>
-                <li id="tower" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/tower.svg" width="12"></img> <span>Tower</span></a> </li>
-                <li id="cave" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/cave.svg" width="12"></img> <span>Cave</span></a> </li>
-                <li id="daily-task" class="nav-item cursor-button"> <a class="nav-link"> <img
-                            src="assets/images/task.svg" width="12"></img> <span>Task</span></a> </li>
-                <li id="daily-check-in" class="nav-item cursor-button"> <a class="nav-link"> <img
-                            src="assets/images/checkin.svg" width="12"></img> <span>Check In</span></a> </li>
-                <li id="artifact" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/artifact.svg" width="12"></img> <span>Artifact</span></a> </li>
+                <li id="dungeon" class="nav-item active"> <a class="nav-link"> <span><img src="assets/images/world.svg"
+                                class="icon-menu"></img>&nbsp;&nbsp;World</span></a> </li>
+                <li id="tower" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/tower.svg" class="icon-menu"></img>&nbsp;&nbsp;Tower</span></a> </li>
+                <li id="cave" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/cave.svg" width="12"></img>&nbsp;&nbsp;Cave</span></a> </li>
+                <li id="daily-task" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/task.svg" class="icon-menu"></img>&nbsp;&nbsp;Task</span></a> </li>
+                <li id="daily-check-in" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/checkin.svg" class="icon-menu"></img>&nbsp;&nbsp;Check In</span></a>
+                </li>
+                <li id="artifact" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/artifact.svg" class="icon-menu"></img>&nbsp;&nbsp;Artifact</span></a>
+                </li>
+                <li id="leaderboard" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/leaderboard.svg"
+                                class="icon-menu"></img>&nbsp;&nbsp;Leaderboard</span></a> </li>
                 <hr class="sidebar-divider">
                 <div id="town-div" class="sidebar-heading row">
                     <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">Town</div>
                     <div id="town-status-div" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 hide-menu"></div>
                 </div>
                 <hr class="sidebar-divider">
-                <li id="warehouse" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/warehouse.svg" width="12"></img> <span>Warehouse</span></a> </li>
-                <li id="barracks" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/barracks.svg" width="12"></img> <span>Barracks</span></a> </li>
-                <li id="house" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/house.svg" width="12"></img> <span>House</span></a> </li>
-                <li id="bank" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/bank.svg" width="12"></img> <span>Bank</span></a> </li>
-                <li id="companion" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/companion.svg" width="12"></img> <span>Companion</span></a> </li>
-                <li id="tavern" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/tavern.svg" width="12"></img> <span>Tavern</span></a> </li>
-                <li id="canteen" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/canteen.svg" width="12"></img> <span>Canteen</span></a> </li>
-                <li id="gods" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/gods.svg" width="12"></img> <span>Temple</span></a> </li>
-                <li id="pet" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/pet.svg" width="12"></img> <span>Cage</span></a> </li>
+                <li id="warehouse" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/warehouse.svg"
+                                class="icon-menu"></img>&nbsp;&nbsp;Warehouse</span></a> </li>
+                <li id="barracks" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/barracks.svg" class="icon-menu"></img>&nbsp;&nbsp;Barracks</span></a>
+                </li>
+                <li id="house" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/house.svg" class="icon-menu"></img>&nbsp;&nbsp;House</span></a> </li>
+                <li id="bank" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/bank.svg" class="icon-menu"></img>&nbsp;&nbsp;Bank</span></a> </li>
+                <li id="companion" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/companion.svg"
+                                class="icon-menu"></img>&nbsp;&nbsp;Companion</span></a> </li>
+                <li id="tavern" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/tavern.svg"
+                                class="icon-menu"></img>&nbsp;&nbsp;&nbsp;&nbsp;Tavern</span></a> </li>
+                <!--<li id="canteen" class="nav-item cursor-button d-none"> <a class="nav-link"> <img src="assets/images/canteen.svg" class="icon-menu"></img> <span>Canteen</span></a> </li>-->
+                <li id="gods" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/gods.svg" class="icon-menu"></img>&nbsp;&nbsp;Temple</span></a> </li>
+                <li id="pet" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/pet.svg" class="icon-menu"></img>&nbsp;&nbsp;Cage</span></a> </li>
                 <hr class="sidebar-divider">
                 <div id="info-div" class="sidebar-heading row">
                     <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">Info</div>
                     <div id="info-status-div" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 hide-menu"></div>
                 </div>
                 <hr class="sidebar-divider">
-                <li id="profile" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/profile.svg" width="12"></img> <span>Profile</span></a> </li>
-                <li id="statistic" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/statistic.svg" width="12"></img> <span>Statistic</span></a> </li>
-                <li id="achievement" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/achievement.svg" width="12"></img> <span>Achievement</span></a> </li>
+                <li id="profile" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/profile.svg" class="icon-menu"></img>&nbsp;&nbsp;Profile</span></a>
+                </li>
+                <li id="statistic" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/statistic.svg"
+                                class="icon-menu"></img>&nbsp;&nbsp;Statistic</span></a> </li>
+                <li id="achievement" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/achievement.svg"
+                                class="icon-menu"></img>&nbsp;&nbsp;Achievement</span></a> </li>
                 <hr class="sidebar-divider">
                 <div id="other-div" class="sidebar-heading row">
                     <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">Other</div>
                     <div id="other-status-div" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 hide-menu"></div>
                 </div>
                 <hr class="sidebar-divider">
-                <li id="shop" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/shop.svg" width="12"></img> <span>Shop</span></a> </li>
-                <li id="tutorial" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/info.svg" width="12"></img> <span>Tutorial</span></a> </li>
-                <li id="setting" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/setting.svg" width="12"></img> <span>Setting</span></a> </li>
-                <li id="save-game" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/save.svg" width="12"></img> <span>Save Game</span></a> </li>
-                <li id="export-import" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/exim.svg" width="12"></img> <span>Export / Import</span></a> </li>
-                <li id="clear-game" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/clear.svg" width="12"></img> <span>Clear Game</span></a> </li>
-                <li id="contact-dev" class="nav-item cursor-button d-none"> <a class="nav-link"> <img
-                            src="assets/images/contact.svg" width="12"></img> <span>Contact Dev</span></a> </li>
+                <li id="shop" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/shop.svg" class="icon-menu"></img>&nbsp;&nbsp;Shop</span></a> </li>
+                <li id="tutorial" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/info.svg" class="icon-menu"></img>&nbsp;&nbsp;Tutorial</span></a>
+                </li>
+                <li id="setting" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/setting.svg" class="icon-menu"></img>&nbsp;&nbsp;Setting</span></a>
+                </li>
+                <li id="save-game" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/save.svg" class="icon-menu"></img>&nbsp;&nbsp;Save Game</span></a>
+                </li>
+                <li id="export-import" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/exim.svg" class="icon-menu"></img>&nbsp;&nbsp;Export /
+                            Import</span></a> </li>
+                <li id="clear-game" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/clear.svg" class="icon-menu"></img>&nbsp;&nbsp;Clear Game</span></a>
+                </li>
+                <li id="contact-dev" class="nav-item cursor-button d-none"> <a class="nav-link"> <span><img
+                                src="assets/images/contact.svg" class="icon-menu"></img>&nbsp;&nbsp;Contact
+                            Dev</span></a> </li>
             </div>
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
@@ -1195,7 +1370,7 @@
                 <div id="sticky-topbar"
                     class="row navbar navbar-expand navbar-light bg-dark topbar mb-2 static-top shadow">
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3"> <button id="sidebarToggleTop"
-                            class="btn btn-link p-05 d-none"> <img id="icon-menu" alt="menu"
+                            class="btn btn-link p-05 d-none"> <img id="icon-menu" title="Menu"
                                 src="assets/images/menu.svg" width="30" /> </button> </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9 right-align"> <span id="view-username"
                             class="text-gray-400"></span>&nbsp;<span id="view-kingdom-name"
@@ -1257,64 +1432,156 @@
                             <div class="card shadow mb-2">
                                 <div id="statistic-header"
                                     class="card-header d-flex flex-row align-items-center justify-content-between">
-                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 py-2 pt-1">
-                                        <h6 class="m-0 font-weight-bold text-primary">Statistic</h6>
-                                    </div>
-                                </div>
-                                <div id="statistic-area-div" class="hero-area left-align pre-scrollable">
-                                    <div class="card-header d-flex flex-row align-items-center ">
-                                        <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Played
-                                                Since : <span id="stat-first-datetime"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Online
-                                                Duration : <span id="stat-online-duration"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Offline
-                                                Duration : <span id="stat-offline-duration"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
-                                                Coin Percentage : <span id="stat-percentage-bonus-coin"></span>%</div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Online
-                                                Gain Coin : <span id="stat-online-gain-coin"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Offline
-                                                Gain Coin : <span id="stat-offline-gain-coin"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
-                                                Spent Coin : <span id="stat-spent-coin"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
-                                                Click : <span id="stat-total-click"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
-                                                DPC Percentage : <span id="stat-percentage-bonus-dpc"></span>%</div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest
-                                                DPC : <span id="stat-highest-dpc"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Crit
-                                                Chance Percentage : <span id="stat-crit-chance"></span>%</div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Crit
-                                                Damage Percentage : <span id="stat-crit-damage"></span>%</div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
-                                                DPS Percentage : <span id="stat-percentage-bonus-dps"></span>%</div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest
-                                                DPS : <span id="stat-highest-dps"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest
-                                                Stage : <span id="stat-highest-floor"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
-                                                Prestige : <span id="stat-total-prestige"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
-                                                Orbs Percentage : <span id="stat-percentage-bonus-orbs"></span>%</div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
-                                                Gain Orbs : <span id="stat-total-gain-orbs"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
-                                                Spent Orbs : <span id="stat-total-spent-orbs"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
-                                                Artifact Unlock : <span id="stat-total-artifact-unlock"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest
-                                                Hero Level : <span id="stat-highest-hero-level"></span></div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest
-                                                Weapon Level : <span id="stat-highest-weapon-level"></span></div>
-                                            <div
-                                                class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1 white-space">
-                                                Highest Elite Level : <br />
-                                                <div id="stat-highest-partner-level" class="mx-3"></div>
-                                            </div>
+                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mx-0 px-0">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                            <h6 id="lifetime-run-tab-button"
+                                                class="rounded-card cursor-button m-0 font-weight-bold text-primary middle-align tab-button-unactive">
+                                                Lifetime Run</h6>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                            <h6 id="current-run-tab-button"
+                                                class="rounded-card tab-button-active cursor-button m-0 font-weight-bold text-primary middle-align">
+                                                Current Run</h6>
+                                        </div>
+                                        <div id="prestige-data-tab-div"
+                                            class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-2">
+                                            <h6 id="prestige-data-tab-button"
+                                                class="rounded-card cursor-button m-0 font-weight-bold text-primary middle-align">
+                                                Prestige Data</h6>
                                         </div>
                                     </div>
+                                </div>
+                                <div id="statistic-header2" class="row card-header align-items-center"></div>
+                                <div id="lifetime-run-area-div" class="hero-area left-align pre-scrollable d-none">
+                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Played Since
+                                            : <span id="stat-first-datetime"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Online
+                                            Duration : <span id="stat-online-duration"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Offline
+                                            Duration : <span id="stat-offline-duration"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total Coin
+                                            Percentage : <span id="stat-percentage-bonus-coin"></span>%</div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Online Gain
+                                            Coin : <span id="stat-online-gain-coin"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Offline Gain
+                                            Coin : <span id="stat-offline-gain-coin"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total Spent
+                                            Coin : <span id="stat-spent-coin"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total Click
+                                            : <span id="stat-total-click"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total DPC
+                                            Percentage : <span id="stat-percentage-bonus-dpc"></span>%</div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest DPC
+                                            : <span id="stat-highest-dpc"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Crit Chance
+                                            Percentage : <span id="stat-crit-chance"></span>%</div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Crit Damage
+                                            Percentage : <span id="stat-crit-damage"></span>%</div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total DPS
+                                            Percentage : <span id="stat-percentage-bonus-dps"></span>%</div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest DPS
+                                            : <span id="stat-highest-dps"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest
+                                            Stage : <span id="stat-highest-floor"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
+                                            Prestige : <span id="stat-total-prestige"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total Orbs
+                                            Percentage : <span id="stat-percentage-bonus-orbs"></span>%</div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total Gain
+                                            Orbs : <span id="stat-total-gain-orbs"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total Spent
+                                            Orbs : <span id="stat-total-spent-orbs"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total
+                                            Artifact Unlock : <span id="stat-total-artifact-unlock"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest Hero
+                                            Level : <span id="stat-highest-hero-level"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest
+                                            Watch Tower Level : <span id="stat-highest-weapon-level"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1 white-space">
+                                            Highest Elite Level : <br />
+                                            <div id="stat-highest-partner-level" class="ml-3"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="current-run-area-div" class="hero-area left-align pre-scrollable d-none">
+                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Last
+                                            Prestige Time : <span id="stat-last-prestige-time"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Current Run
+                                            Time : <span id="stat-current-run-time"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest
+                                            Stage : <span id="stat-current-highest-stage"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest DPC
+                                            : <span id="stat-current-highest-dpc"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest DPS
+                                            : <span id="stat-current-highest-dps"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total Stage
+                                            Success : <span id="stat-current-stage-success"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Total Stage
+                                            Failed : <span id="stat-current-stage-failed"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Enemy Killed
+                                            : <span id="stat-current-enemy-killed"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1 white-space">
+                                            Gold Earned : <span id="stat-current-total-gold-earned"></span>
+                                            <div id="stat-current-gold-earned" class="ml-3"></div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest Gold
+                                            Earned : <span id="stat-current-highest-gold-earned"></span></div>
+                                    </div>
+                                </div>
+                                <div id="prestige-data-area-div" class="hero-area left-align pre-scrollable d-none">
+                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Prestige
+                                            Time : <span id="stat-prestige-time"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Game
+                                            Duration : <span id="stat-prestige-run-time"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest
+                                            Stage : <span id="stat-prestige-highest-stage"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest DPC
+                                            : <span id="stat-prestige-highest-dpc"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Highest DPS
+                                            : <span id="stat-prestige-highest-dps"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Enemy Killed
+                                            : <span id="stat-prestige-enemy-killed"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Game Speed :
+                                            <span id="stat-prestige-game-speed"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Orbs Earned
+                                            : <span id="stat-prestige-total-orbs-earned"></span></div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1">Artifact
+                                            Damage : <span id="stat-prestige-artifact-damage"></span>%</div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1 mb-1 white-space">
+                                            Gold Earned : <span id="stat-prestige-total-gold-earned"></span>
+                                            <div id="stat-prestige-gold-earned" class="ml-3"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="leaderboard-div" class="container-fluid d-none">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="card shadow mb-2">
+                                <div id="leaderboard-header"
+                                    class="card-header d-flex flex-row align-items-center justify-content-between">
+                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mx-0 px-0">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                            <h6 id="current-leaderboard-tab-button"
+                                                class="rounded-card cursor-button m-0 font-weight-bold text-primary middle-align tab-button-active">
+                                                Current Leaderboard</h6>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                            <h6 id="prev-leaderboard-tab-button"
+                                                class="rounded-card cursor-button m-0 font-weight-bold text-primary middle-align tab-button-unactive">
+                                                Last Leaderboard</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="current-leaderboard-area-div"
+                                    class="hero-area left-align pre-scrollable d-none"></div>
+                                <div id="prev-leaderboard-area-div" class="hero-area left-align pre-scrollable d-none">
                                 </div>
                             </div>
                         </div>
@@ -1326,7 +1593,7 @@
                             <div class="card shadow mb-2">
                                 <div id="achievement-header"
                                     class="card-header d-flex flex-row align-items-center justify-content-between">
-                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 py-2 pt-1">
                                             <h6 class="m-0 font-weight-bold text-primary">Achievement</h6>
                                         </div>
@@ -1405,13 +1672,13 @@
                                     <div
                                         class="card-header d-flex flex-row align-items-center justify-content-between v-center p-1">
                                         <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5 v-center">
+                                            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-5 col-5 v-center">
                                                 <h6 class="m-0 font-weight-bold text-primary">World</h6>
                                             </div>
-                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7 col-7 v-center right-align">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-7 col-7 v-center right-align">
                                                 <h6 class="m-0 font-weight-bold text-primary">
                                                     <div id="auto-progress-div"
-                                                        class="custom-control custom-switch v-center cursor-button d-none">
+                                                        class="custom-control custom-switch v-center cursor-button no-padding d-none">
                                                         <input type="checkbox"
                                                             class="custom-control-input cursor-button"
                                                             id="auto-progress-switch"> <label id="auto-progress-title"
@@ -1420,40 +1687,47 @@
                                                 </h6>
                                             </div>
                                             <div id="floor-div"
-                                                class="col-xl-6 col-lg-6 col-md-5 col-sm-12 middle-align row">
-                                                <div
-                                                    class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 middle-align no-padding v-center-flex right-content">
-                                                    Stage&nbsp;&nbsp;</div>
-                                                <div id="floor-number-div-1"
-                                                    class="col-xl-15 col-lg-15 col-md-15 col-sm-15 col-15 middle-align no-padding">
-                                                    <button id="floor-number-text-1"
-                                                        class="tab-button-unactive"></button></div>
-                                                <div id="floor-number-div-2"
-                                                    class="col-xl-15 col-lg-15 col-md-15 col-sm-15 col-15 middle-align no-padding">
-                                                    <button id="floor-number-text-2"
-                                                        class="tab-button-unactive"></button></div>
-                                                <div id="floor-number-div-3"
-                                                    class="col-xl-15 col-lg-15 col-md-15 col-sm-15 col-15 middle-align no-padding">
-                                                    <button id="floor-number-text-3" class="tab-button-active"></button>
-                                                </div>
-                                                <div id="floor-number-div-4"
-                                                    class="col-xl-15 col-lg-15 col-md-15 col-sm-15 col-15 middle-align no-padding">
-                                                    <button id="floor-number-text-4" class="tab-button-unactive"></span>
-                                                </div>
-                                                <div id="floor-number-div-5"
-                                                    class="col-xl-15 col-lg-15 col-md-15 col-sm-15 col-15 middle-align no-padding">
-                                                    <button id="floor-number-text-5" class="tab-button-unactive"></span>
+                                                class="col-xl-6 col-lg-6 col-md-7 col-sm-12 col-12 middle-align row">
+                                                <div id="number-floor-div"
+                                                    class="row col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9 no-padding no-margin">
+                                                    <div
+                                                        class="col-xl-15 col-lg-15 col-md-15 col-sm-15 col-15 middle-align no-padding v-center-flex right-content">
+                                                        Stage&nbsp;&nbsp;</div>
+                                                    <div id="floor-number-div-1"
+                                                        class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 middle-align no-padding">
+                                                        <button id="floor-number-text-1"
+                                                            class="tab-button-unactive"></button></div>
+                                                    <div id="floor-number-div-2"
+                                                        class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 middle-align no-padding">
+                                                        <button id="floor-number-text-2"
+                                                            class="tab-button-unactive"></button></div>
+                                                    <div id="floor-number-div-3"
+                                                        class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 middle-align no-padding">
+                                                        <button id="floor-number-text-3"
+                                                            class="tab-button-active"></button></div>
+                                                    <div id="floor-number-div-4"
+                                                        class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 middle-align no-padding">
+                                                        <button id="floor-number-text-4"
+                                                            class="tab-button-unactive"></span></div>
+                                                    <div id="floor-number-div-5"
+                                                        class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 middle-align no-padding">
+                                                        <button id="floor-number-text-5"
+                                                            class="tab-button-unactive"></span></div>
                                                 </div>
                                                 <div id="max-floor-div" title="Click to jump to the highest stage"
                                                     class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 no-padding no-margin v-center-flex middle-content tab-button-highest">
                                                     <div
                                                         class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex middle-content">
-                                                        <span id="max-floor"></span></div>
+                                                        <span id="max-floor"
+                                                            title="Click to jump to the highest stage"></span></div>
+                                                </div>
+                                                <div id="jump-floor-div" title="Click to jump to the selected stage"
+                                                    class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 no-padding no-margin v-center-flex middle-content tab-button-back">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div id="dungeon-header" class="card-body">
                                         <div class="enemy-area">
                                             <div class="enemy-name v-center-flex2 middle-content"> <span
                                                     id="current-enemy-name"></span>&nbsp;&nbsp;&nbsp; <img
@@ -1471,8 +1745,8 @@
                                             <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 row px-0">
                                                 <div
                                                     class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left-align v-center-flex px-0">
-                                                    <span id="hero-dpc-div" title="Damage Per Click"><img
-                                                            src="assets/images/dpc.svg" title="Damage Per Click"
+                                                    <span id="hero-dpc-div"><img src="assets/images/dpc.svg"
+                                                            title="Damage Per Click"
                                                             class="image-size"></img>&nbsp;DPC&nbsp;:&nbsp;<span
                                                             id="hero-dpc"></span>&nbsp;<img id="dpc-crit-img"
                                                             src="assets/images/crit.svg"
@@ -1482,13 +1756,14 @@
                                                 <div
                                                     class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left-align v-center-flex px-0">
                                                     <span id="hero-coin-div"><img src="assets/images/coin.svg"
+                                                            title="Current Coin"
                                                             class="image-size"></img>&nbsp;Coin&nbsp;:&nbsp;<span
                                                             id="hero-coin"></span>&nbsp;<span id="recent-coin"
                                                             class="good-info"></span></span> </div>
                                                 <div
                                                     class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left-align v-center-flex px-0">
-                                                    <span id="hero-dps-div" title="Damage Per Second"><img
-                                                            src="assets/images/dps.svg" title="Damage Per Second"
+                                                    <span id="hero-dps-div"><img src="assets/images/dps.svg"
+                                                            title="Damage Per Second"
                                                             class="image-size"></img>&nbsp;DPS&nbsp;:&nbsp;<span
                                                             id="hero-dps"></span>&nbsp;<img id="dps-crit-img"
                                                             src="assets/images/crit.svg"
@@ -1497,7 +1772,7 @@
                                                         class="image-size-static cursor-button d-none"></img> </div>
                                                 <div id="hero-orbs-div"
                                                     class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left-align v-center-flex d-none px-0">
-                                                    <img src="assets/images/orbs.svg"
+                                                    <img src="assets/images/orbs.svg" title="Orbs"
                                                         class="image-size"></img>&nbsp;<span
                                                         id="hero-orbs-title"></span>&nbsp;<span id="hero-orbs"></span>
                                                 </div>
@@ -1505,8 +1780,8 @@
                                             <div
                                                 class="col-xl-4 col-lg-4 col-md-12 col-sm-12 p-0 v-center-flex float-left">
                                                 <button id="dpc-button" class="dpc-button"><img
-                                                        src="assets/images/hit.svg" class="image-size-2"></img>&nbsp;Hit
-                                                    Enemy</button> </div>
+                                                        src="assets/images/hit.svg" title="Hit Enemy"
+                                                        class="image-size-2"></img>&nbsp;Hit Enemy</button> </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1520,70 +1795,70 @@
                                         <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
                                             <div
                                                 class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4 middle-align no-padding v-center-flex">
-                                                <button id="hero-tab-button"
+                                                <button type="button" id="hero-tab-button"
                                                     class="tab-button-active middle-content v-center-flex"><img
-                                                        src="assets/images/hero.svg"
-                                                        class="image-size-2">&nbsp;Hero</button> </div>
+                                                        src="assets/images/hero.svg" title="Hero Tab"
+                                                        class="image-size-2">Hero</button> </div>
                                             <div
                                                 class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4 middle-align no-padding v-center-flex">
                                                 <button id="partner-tab-button"
                                                     class="tab-button-unactive middle-content v-center-flex"><img
-                                                        src="assets/images/partner.svg"
+                                                        src="assets/images/partner.svg" title="Elite Tab"
                                                         class="image-size-2">&nbsp;Elite</button> </div>
                                             <div
                                                 class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4 middle-align no-padding v-center-flex">
                                                 <button id="skill-tab-button"
                                                     class="tab-button-unactive middle-content v-center-flex"><img
-                                                        src="assets/images/skill.svg"
+                                                        src="assets/images/skill.svg" title="Skill Tab"
                                                         class="image-size-2">&nbsp;Skill</button> </div>
                                             <div
                                                 class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4 middle-align no-padding v-center-flex">
                                                 <button id="labor-tab-button"
                                                     class="tab-button-unactive middle-content v-center-flex"><img
-                                                        src="assets/images/coin.svg" class="image-size-2">&nbsp;Coin
-                                                    Master</button> </div>
+                                                        src="assets/images/coin.svg" title="Coin Tab"
+                                                        class="image-size-2">&nbsp;Coin Master</button> </div>
                                             <div
                                                 class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4 middle-align no-padding v-center-flex">
                                                 <button id="shop-tab-button"
                                                     class="tab-button-unactive middle-content v-center-flex"><img
-                                                        src="assets/images/shop.svg"
+                                                        src="assets/images/shop.svg" title="Shop Tab"
                                                         class="image-size-2">&nbsp;Shop</button> </div>
                                             <div
                                                 class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4 middle-align no-padding v-center-flex">
                                                 <button id="log-tab-button"
                                                     class="tab-button-unactive middle-content v-center-flex"><img
-                                                        src="assets/images/log.svg"
+                                                        src="assets/images/log.svg" title="Log Tab"
                                                         class="image-size-2">&nbsp;Log</button> </div>
                                         </div>
                                     </div>
                                     <div id="buy-multiplier-div"
                                         class="card-header d-flex flex-row align-items-center p-1 d-none">
                                         <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
-                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 right-align pt-2">
-                                                Multiplier</div>
+                                            <div class="col-xl-10 col-lg-8 col-md-8 col-sm-8 col-6 right-align pt-2">Buy
+                                            </div>
                                             <div
-                                                class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 middle-align no-padding">
-                                                <button id="button-buy-multiplier-1" class="tab-button-unactive"
-                                                    value="1">1x</button> </div>
+                                                class="col-xl-05 col-lg-1 col-md-1 col-sm-1 col-15 middle-align no-padding">
+                                                <button id="button-buy-multiplier-1" title="1x Multiplier"
+                                                    class="tab-button-unactive" value="1">1x</button> </div>
                                             <div
-                                                class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 middle-align no-padding">
+                                                class="col-xl-05 col-lg-1 col-md-1 col-sm-1 col-15 middle-align no-padding">
                                                 <button id="button-buy-multiplier-10" class="tab-button-unactive"
                                                     value="10">10x</button> </div>
                                             <div
-                                                class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 middle-align no-padding">
+                                                class="col-xl-05 col-lg-1 col-md-1 col-sm-1 col-15 middle-align no-padding">
                                                 <button id="button-buy-multiplier-100" class="tab-button-unactive"
                                                     value="100">100x</button> </div>
                                             <div
-                                                class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 middle-align no-padding">
+                                                class="col-xl-05 col-lg-1 col-md-1 col-sm-1 col-15 middle-align no-padding">
                                                 <button id="button-buy-multiplier-0" class="tab-button-unactive"
                                                     value="0">Max</button> </div>
                                         </div>
                                     </div>
                                     <div id="total-produce-coin-div"
-                                        class="card-header d-flex flex-row align-items-center p-1 d-none">
+                                        class="card-header flex-row align-items-center p-1 d-none">
                                         <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0"> Total Yield
                                             :&nbsp;<span id="total-produce-labor">0</span>&nbsp;<img
-                                                src="assets/images/coin.svg"
+                                                src="assets/images/coin.svg" title="Total Yield"
                                                 class="image-size"></img>&nbsp;/&nbsp;10&nbsp;Sec </div>
                                     </div>
                                     <div class="hero-area left-align d-flex flex-row px-1">
@@ -1592,13 +1867,13 @@
                                                 class="rounded-card col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 mx-0">
                                                 <div id="companion-generate-unlock-div"
                                                     class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 no-gutters v-center-flex unlock-info lock-icon">
-                                                    Unlock this companion at stage 200</div>
+                                                </div>
                                             </div>
                                             <div id="equipment-generate"
                                                 class="rounded-card col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 mx-0">
                                                 <div id="equipment-generate-unlock-div"
                                                     class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 no-gutters v-center-flex unlock-info lock-icon">
-                                                    Unlock this equipment at stage 225</div>
+                                                </div>
                                             </div>
                                             <div id="king-area-div"
                                                 class="rounded-card row col-xl-12 col-lg-12 col-md-12 col-sm-12 mx-0">
@@ -1612,8 +1887,8 @@
                                                 <div id="hero-area-level"
                                                     class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"> <button
                                                         id="upgrade-level-button" class="upgrade-level-button"><img
-                                                            src="assets/images/levelup.svg"
-                                                            class="image-size-2">&nbsp;Level Up x<span
+                                                            src="assets/images/levelup.svg" title="Level Up"
+                                                            class="image-size-2">&nbsp;Lv Up x<span
                                                             id="level-hero-upgrade-multiplier"></span> - <span
                                                             id="upgrade-level-fee"></span> Coin</button> </div>
                                             </div>
@@ -1632,7 +1907,7 @@
                                                 <div id="hero-area-weapon"
                                                     class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"> <button
                                                         id="upgrade-weapon-button" class="upgrade-level-button"><img
-                                                            src="assets/images/levelup.svg"
+                                                            src="assets/images/levelup.svg" title="Level Up"
                                                             class="image-size-2">&nbsp;<span
                                                             id="upgrade-weapon-text">Unlock</span><span
                                                             id="level-weapon-upgrade-multiplier"></span> - <span
@@ -1738,7 +2013,7 @@
                                     class="card-header d-flex flex-row align-items-center justify-content-between">
                                     <div class="row col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 py-1 pt-1 v-center-flex">
                                         <h6 class="m-0 font-weight-bold text-primary">Tower</h6>&nbsp;<img
-                                            id="tower-image-info" alt="tower-info" src="assets/images/info-color.svg"
+                                            id="tower-image-info" title="Tower Info" src="assets/images/info-color.svg"
                                             class="image-size-static cursor-button"></img>
                                     </div>
                                     <div class="row col-xl-7 col-lg-7 col-md-7 col-sm-7 col-7 py-1 pt-1 right-content">
@@ -1927,16 +2202,10 @@
                             <div class="card shadow mb-2">
                                 <div id="bank-header"
                                     class="card-header d-flex flex-row align-items-center justify-content-between no-gutters">
-                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                                            <h6 id="bank-tab-button"
-                                                class="rounded-card tab-button-active cursor-button m-0 font-weight-bold text-primary middle-align">
-                                                Bank</h6>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                                            <h6 id="treasure-tab-button"
-                                                class="rounded-card cursor-button m-0 font-weight-bold text-primary middle-align">
-                                                Treasure</h6>
+                                    <!--<div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6"> <h6 id="bank-tab-button" class="rounded-card tab-button-active cursor-button m-0 font-weight-bold text-primary middle-align">Bank</h6> </div> <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6"> <h6 id="treasure-tab-button" class="rounded-card cursor-button m-0 font-weight-bold text-primary middle-align">Treasure</h6> </div> </div>-->
+                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-1">
+                                            <h6 class="m-0 font-weight-bold text-primary">Bank</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -1951,7 +2220,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <div class="card shadow mb-2">
                                 <div id="companion-header"
-                                    class="card-header d-flex flex-row align-items-center justify-content-between">
+                                    class="card-header d-flex flex-row align-items-center justify-content-between no-gutters">
                                     <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-1">
                                             <h6 class="m-0 font-weight-bold text-primary">Companion</h6>
@@ -2845,12 +3114,36 @@
                             <div class="card shadow mb-2">
                                 <div id="setting-header"
                                     class="card-header d-flex flex-row align-items-center justify-content-between">
-                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 py-2">
-                                        <h6 class="m-0 font-weight-bold text-primary">Setting</h6>
+                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 px-0">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                            <h6 id="global-setting-tab-button"
+                                                class="rounded-card tab-button-active cursor-button m-0 font-weight-bold text-primary middle-align">
+                                                Global Setting</h6>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                            <h6 id="cloud-save-tab-button"
+                                                class="rounded-card cursor-button m-0 font-weight-bold text-primary middle-align tab-button-unactive">
+                                                Cloud Save</h6>
+                                        </div>
                                     </div>
                                 </div>
-                                <div id="setting-area-div"
+                                <div id="global-setting-div"
                                     class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0 hero-area left-align pb-2 pre-scrollable">
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 row">
+                                        <div
+                                            class="col-xl-12 col-lg-12 col-md-12 col-sm-12 my-2 font-weight-bold font-underline">
+                                            Hero Sequence</div>
+                                        <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex">
+                                                <label for="hero-sequence-asc" class="cursor-button"> <input
+                                                        type="radio" name="hero-sequence" id="hero-sequence-asc"
+                                                        value="asc">&nbsp;Weakest To Strongest </label> </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex">
+                                                <label for="hero-sequence-desc" class="cursor-button"> <input
+                                                        type="radio" name="hero-sequence" id="hero-sequence-desc"
+                                                        value="desc">&nbsp;Strongest To Weakest </label> </div>
+                                        </div>
+                                    </div>
                                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 row">
                                         <div
                                             class="col-xl-12 col-lg-12 col-md-12 col-sm-12 my-2 font-weight-bold font-underline">
@@ -2864,6 +3157,21 @@
                                                 <label for="partner-sequence-desc" class="cursor-button"> <input
                                                         type="radio" name="partner-sequence" id="partner-sequence-desc"
                                                         value="desc">&nbsp;Strongest To Weakest </label> </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 row">
+                                        <div
+                                            class="col-xl-12 col-lg-12 col-md-12 col-sm-12 my-2 font-weight-bold font-underline">
+                                            Skill Sequence</div>
+                                        <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex">
+                                                <label for="skill-sequence-asc" class="cursor-button"> <input
+                                                        type="radio" name="skill-sequence" id="skill-sequence-asc"
+                                                        value="asc">&nbsp;Oldest To Newest </label> </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex">
+                                                <label for="skill-sequence-desc" class="cursor-button"> <input
+                                                        type="radio" name="skill-sequence" id="skill-sequence-desc"
+                                                        value="desc">&nbsp;Newest To Oldest </label> </div>
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 row">
@@ -3052,6 +3360,22 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="setting-save-timer" class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 row">
+                                        <div
+                                            class="col-xl-12 col-lg-12 col-md-12 col-sm-12 my-2 font-weight-bold font-underline align-items-center justify-content-between">
+                                            Save Timer&nbsp;<img id="save-timer-info" src="assets/images/info-color.svg"
+                                                class="image-size-static cursor-button"></img></div>
+                                        <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex">
+                                                Local Save&nbsp; <input id="local-save-slider" type="range" min="10"
+                                                    max="300" step="10" value="100">&nbsp; <label
+                                                    id="local-save-text">0</label>&nbsp;Sec </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex">
+                                                Cloud Save&nbsp; <input id="cloud-save-slider" type="range" min="10"
+                                                    max="300" step="10" value="100">&nbsp; <label
+                                                    id="cloud-save-text">0</label>&nbsp;Sec </div>
+                                        </div>
+                                    </div>
                                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 row">
                                         <div
                                             class="col-xl-12 col-lg-12 col-md-12 col-sm-12 my-2 font-weight-bold font-underline">
@@ -3083,6 +3407,57 @@
                                             Auto Sell Equipment</div>
                                         <div id="auto-sell-content-div"
                                             class="row col-xl-12 col-lg-12 col-md-12 col-sm-12"></div>
+                                    </div>
+                                </div>
+                                <div id="cloud-save-div"
+                                    class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 hero-area left-align pb-2 pre-scrollable d-none">
+                                    <div
+                                        class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 my-2 font-weight-bold align-items-center justify-content-between">
+                                        <label class="font-underline">Cloud Save&nbsp;</label> <img id="cloud-save-info"
+                                            src="assets/images/info-color.svg"
+                                            class="image-size-static cursor-button"></img> </div>
+                                    <div
+                                        class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 my-2 font-weight-bold align-items-center justify-content-between text-right">
+                                        <img id="cloud-status-img" src="assets/images/info-color.svg"
+                                            class="image-size-static"></img>&nbsp; <label id="cloud-status-text">Not
+                                            Connected</label> </div>
+                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
+                                        <form class="w-100 submit-form">
+                                            <div
+                                                class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-1 v-center-flex">
+                                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 px-0">Email</div>
+                                                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 px-0"> <input
+                                                        type="text" id="setting-credential-email"
+                                                        class="form-control validate email-format" maxlength="100"
+                                                        autocomplete="off" required> </div>
+                                            </div>
+                                            <div id="setting-password-div"
+                                                class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-1 v-center-flex">
+                                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 px-0">Password
+                                                </div>
+                                                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 px-0"> <input
+                                                        type="password" id="setting-credential-password"
+                                                        class="form-control validate" maxlength="30" autocomplete="off"
+                                                        required> </div>
+                                            </div>
+                                            <div id="setting-confirm-password-div"
+                                                class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-1 v-center-flex">
+                                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 px-0">Confirm
+                                                </div>
+                                                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 px-0"> <input
+                                                        type="password" id="setting-credential-confirm-password"
+                                                        class="form-control validate" maxlength="30" autocomplete="off"
+                                                        required> </div>
+                                            </div>
+                                            <div id="setting-connect-button-div"
+                                                class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex mt-1">
+                                                <button id="setting-credential-button" class="dpc-button">Connect
+                                                    Now</button> </div>
+                                            <div id="setting-last-save-div"
+                                                class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 v-center-flex mt-1">
+                                                Last Cloud Save :&nbsp;<label id="setting-last-cloud-save-text"></label>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -3135,6 +3510,7 @@
             </footer>
         </div>
     </div>
+    <script src="assets/js/playFab.js"></script>
     <script src="assets/js/jquery-3.5.1.min.js"></script>
     <script src="assets/js/crypto-js.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -3145,21 +3521,21 @@
     <script src="assets/js/constant.min.js"></script>
     <script src="assets/js/aSimpleTour.js"></script>
     <script src="assets/js/game.min.js"></script>
-    <!--客服 开始-->
+<!--客服 开始-->
 <link rel="stylesheet" href="//g8hh.com/static/css/kf.css" type="text/css" media="screen" charset="utf-8">
 <script src="//g8hh.com/static/js/kf.js"></script>
 <!-- 客服 结束 -->
 <!--站长统计-->
-<div style="display: none">
-    <script>
+<div style="display: none"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?dbb7ff142f4d4b68546c93b9cd6e9328";
+      hm.src = "https://hm.baidu.com/hm.js?f237591d5976f87ca2e06b38c3658d9c";
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
+    
         </div>
 </body>
 
