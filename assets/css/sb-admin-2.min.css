@@ -687,6 +687,11 @@ pre code {
   max-width: 16.66667%;
 }
 
+.col-24 {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
 .col-3 {
   flex: 0 0 25%;
   max-width: 25%;
@@ -1239,6 +1244,10 @@ pre code {
     flex: 0 0 16.66667%;
     max-width: 16.66667%;
   }
+  .col-lg-24 {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
   .col-lg-3 {
     flex: 0 0 25%;
     max-width: 25%;
@@ -1413,6 +1422,10 @@ pre code {
   .col-xl-2 {
     flex: 0 0 16.66667%;
     max-width: 16.66667%;
+  }
+  .col-xl-24 {
+    flex: 0 0 20%;
+    max-width: 20%;
   }
   .col-xl-3 {
     flex: 0 0 25%;
@@ -2412,6 +2425,20 @@ fieldset:disabled a.btn {
   color: #fff !important;
   background-color: #4e73df !important;
   border-color: #4e73df !important;
+}
+
+.btn-ads {
+  color: #000000 !important;
+  background-color: #b6efff !important;
+  border: dashed 3px #64bce0 !important;
+}
+
+.btn-sell {
+  color: #ffffff !important;
+  background-color: #ed685f !important;
+  border-radius: 0.25rem;
+  border: 1px solid #CCCCCC;
+  cursor: pointer;
 }
 
 .btn-primary:hover {
@@ -3720,6 +3747,11 @@ input[type="button"].btn-block {
 
 .v-center{
   display: inline-grid;
+  align-items: center;
+}
+
+.v-center-inline{
+  display: inline;
   align-items: center;
 }
 
@@ -5376,6 +5408,10 @@ a.badge-dark:focus, a.badge-dark.focus {
   height: 90px;	
 }
 
+.image-game{
+  height: 150px;	
+}
+
 .center-image-div{
   display: inline-block;
   height: 100%;
@@ -5394,7 +5430,7 @@ a.badge-dark:focus, a.badge-dark.focus {
   background-image: url(../images/red-dot.svg);
   background-size: 10px;
   background-repeat: no-repeat;
-  background-position-x: 70%;
+  background-position-x: 75%;
   background-position-y: 2px;
 }
 
@@ -5449,8 +5485,20 @@ a.badge-dark:focus, a.badge-dark.focus {
 	width: 14px;
   }
   
+  .image-size-15, .image-size-static{
+	width: 16px;
+  }
+  
   .image-size-2, .image-size-2-static{
 	width: 19px;
+  }
+  
+  .image-size-3, .image-size-3-static{
+	width: 25px;
+  }
+  
+  .image-size-4, .image-size-4-static{
+	width: 30px;
   }
   
   .image-crit{
@@ -7307,6 +7355,10 @@ button.bg-dark:focus {
   content: "";
 }
 
+.b-none {
+  background: none !important;
+}
+
 .d-none {
   display: none !important;
 }
@@ -8302,6 +8354,10 @@ button.bg-dark:focus {
   width: 100% !important;
 }
 
+.w-150p {
+  width: 150px !important;
+}
+
 .w-auto {
   width: auto !important;
 }
@@ -8525,6 +8581,10 @@ button.bg-dark:focus {
   margin-left: 3rem !important;
 }
 
+.mb-6 {
+  margin-bottom: 5rem !important;
+}
+
 .p-0 {
   padding: 0 !important;
 }
@@ -8557,6 +8617,11 @@ button.bg-dark:focus {
   padding: 0.25rem !important;
 }
 
+.pt-05,
+.py-05 {
+  padding-top: 0.125rem !important;
+}
+
 .pt-1,
 .py-1 {
   padding-top: 0.25rem !important;
@@ -8573,6 +8638,11 @@ button.bg-dark:focus {
 .pr-1,
 .px-1 {
   padding-right: 0.25rem !important;
+}
+
+.pb-05,
+.py-05 {
+  padding-bottom: 0.125rem !important;
 }
 
 .pb-1,
@@ -10835,6 +10905,14 @@ a:focus {
   background-color: #3a3b45 !important;
 }
 
+.bg-lightblue {
+  background-color: lightblue !important;	
+}
+
+.bg-lightgreen {
+  background-color: lightgreen !important;	
+}
+
 .o-hidden {
   overflow: hidden !important;
 }
@@ -11183,7 +11261,7 @@ a:focus {
 }
 
 .sidebar {
-  width: 6.5rem;
+  width: 7.5rem;
   min-height: 100vh;
 }
 
@@ -11406,7 +11484,7 @@ a:focus {
   }
   .sidebar.toggled {
     overflow: visible;
-    width: 7.5rem !important;
+    width: 8.5rem !important;
   }
   .sidebar.toggled .nav-item .collapse {
     position: absolute;
@@ -11885,6 +11963,78 @@ a:focus {
   background-position: center;
 }
 
+@-moz-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+
+@-webkit-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+/* IE */
+@-ms-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+/* Opera and prob css3 final iteration */
+@keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+
+.tab-button-news {
+  border-radius: 0.25rem;
+  border: 0;
+  width: 100%;
+  padding: 0.5rem;
+  cursor: pointer;
+  background-image: url(../images/news.svg);
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  -moz-animation: blink normal 2s infinite ease-in-out; /* Firefox */
+  -webkit-animation: blink normal 2s infinite ease-in-out; /* Webkit */
+  -ms-animation: blink normal 2s infinite ease-in-out; /* IE */
+  animation: blink normal 2s infinite ease-in-out; /* Opera and prob css3 final iteration */
+}
+
+.blink-image {
+  -moz-animation: blink normal 1.5s infinite ease-in-out; /* Firefox */
+  -webkit-animation: blink normal 1.5s infinite ease-in-out; /* Webkit */
+  -ms-animation: blink normal 1.5s infinite ease-in-out; /* IE */
+  animation: blink normal 1.5s infinite ease-in-out; /* Opera and prob css3 final iteration */
+}
+
 .drop-down-list {
   border-radius: 0.25rem;
   border: 1px solid #CCCCCC;
@@ -11898,6 +12048,13 @@ a:focus {
   border: 1px solid #CCCCCC;
   height: 35px;
   width: 100%;
+}
+
+.dpc-button-hatch {
+  background-image: url(../images/block.svg);
+  background-repeat: repeat;
+  background-size: contain;
+  border: 3px red solid;
 }
 
 .upgrade-level-button {
@@ -11960,14 +12117,27 @@ a:focus {
 }
 
 .prestige-button {
-  background-color: #ff00ff;
-  font-weight: bold;
+  border-radius: 0.25rem;
+  border: 1px solid #CCCCCC;
+  background-color: #FF00FF;
+  color: #FFFFFF;
+  width: 100%;
+  padding: 0.25rem;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .rounded-card {
   position:relative;
   border: 1px solid #CCCCCC;
+  border-radius: 0.5rem;
+  padding: 0.25rem;  
+  margin: 0.25rem;
+}
+
+.rounded-card-2 {
+  position:relative;
+  border: 5px double #fdd835;
   border-radius: 0.5rem;
   padding: 0.25rem;  
   margin: 0.25rem;
